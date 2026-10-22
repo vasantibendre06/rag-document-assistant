@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RAG Document Assistant</title>
+
+    <!-- Our stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+
+        <!-- Header -->
+        <header class="app-header">
+            <div class="brand">
+                <div class="brand-icon">R</div>
+
+                <div>
+                    <h1>RAG Document Assistant</h1>
+                    <p>Ask questions about your documents</p>
+                </div>
+            </div>
+
+            <div class="model-status">
+                <span class="status-dot"></span>
+                <span>Local AI</span>
+            </div>
+        </header>
+
+        <main class="main-content">
+
+            <!-- Upload section -->
+            <section class="upload-section">
+                <div class="section-heading">
+                    <div>
+                        <h2>Upload a document</h2>
+                        <p>Upload a PDF or TXT file to get started.</p>
+                    </div>
+                </div>
+
+                <label for="file-input" class="upload-box" id="upload-box">
+                    <div class="upload-icon">↑</div>
+
+                    <h3>Drop your document here</h3>
+                    <p>or click to browse your computer</p>
+
+                    <span class="supported-formats">
+                        Supported formats: PDF, TXT
+                    </span>
+                </label>
+
+                <input
+                    type="file"
+                    id="file-input"
+                    accept=".pdf,.txt,application/pdf,text/plain"
+                    hidden
+                >
+
+                <!-- Selected file information -->
+                <div class="file-card" id="file-card" hidden>
+                    <div class="file-icon" id="file-icon">📄</div>
+
+                    <div class="file-details">
+                        <p class="file-name" id="file-name">document.pdf</p>
+                        <p class="file-meta" id="file-meta">
+                            Ready to upload
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="remove-file-button"
+                        id="remove-file-button"
+                        aria-label="Remove selected file"
+                    >
+                        ×
+                    </button>
+                </div>
+
+                <button
+                    type="button"
+                    id="upload-button"
+                    class="primary-button"
+                    disabled
+                >
+                    Process document
+                </button>
+
+                <p class="upload-message" id="upload-message" role="status">
+                    No document processed yet.
+                </p>
+            </section>
+
+            <!-- Question and answer section -->
+            <section class="chat-section">
+                <div class="section-heading">
+                    <div>
+                        <h2>Ask your document</h2>
+                        <p>Ask a question using the uploaded document as context.</p>
+                    </div>
+                </div>
+
+                <div class="chat-window" id="chat-window" aria-live="polite">
+                    <div class="welcome-message" id="welcome-message">
+                        <div class="welcome-icon">✦</div>
+                        <h3>Your document, ready to answer</h3>
+                        <p>
+                            Process a document first. Then ask questions about
+                            its content.
+                        </p>
+                    </div>
+                </div>
+
+                <form class="question-form" id="question-form">
+                    <label for="question-input" class="visually-hidden">
+                        Ask a question
+                    </label>
+
+                    <textarea
+                        id="question-input"
+                        name="question"
+                        placeholder="Ask something about your document..."
+                        rows="2"
+                        maxlength="2000"
+                        disabled
+                        required
+                    ></textarea>
+
+                    <button
+                        type="submit"
+                        id="send-button"
+                        class="send-button"
+                        disabled
+                        aria-label="Send question"
+                    >
+                        Send
+                    </button>
+                </form>
+
+                <p class="privacy-note">
+                    Your document is intended to be processed by your local
+                    RAG pipeline and Ollama.
+                </p>
+            </section>
+
+            <!-- Retrieved evidence section -->
+            <section class="evidence-section">
+                <div class="section-heading">
+                    <div>
+                        <h2>Retrieved evidence</h2>
+                        <p>Inspect the text used to generate the answer.</p>
+                    </div>
+                </div>
+
+                <div id="evidence-container" class="evidence-container">
+                    <p class="empty-evidence">
+                        Retrieved chunks will appear here after you ask a question.
+                    </p>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="app-footer">
+            <p>RAG Document Assistant · Learning project</p>
+        </footer>
+
+    </div>
+
+    <!-- Our JavaScript -->
+    <script src="app.js" defer></script>
+</body>
+</html>

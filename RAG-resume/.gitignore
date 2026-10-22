@@ -1,0 +1,30 @@
+
+# Python virtual environment
+.venv/
+venv/
+env/
+
+# Python generated files
+__pycache__/
+*.py[cod]
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Generated resume data and personal documents
+documents/resume.pdf
+documents/resume_extracted.txt
+documents/resume_cleaned.txt
+documents/resume_chunks.json
+documents/document_chunks.json
+
+# Editor and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
